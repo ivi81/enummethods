@@ -51,7 +51,7 @@ func (f *File) genDecl(node ast.Node) bool {
 //isValidTypeNames - проверка названия обрабатываемого типа
 func (f *File) isValidTypeNames(name string) bool {
 	for _, typeName := range f.typeNames {
-		if typeName == typeName {
+		if name == typeName {
 			return true
 		}
 	}
