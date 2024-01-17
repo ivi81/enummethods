@@ -3,7 +3,7 @@ package methods
 
 import "text/template"
 
-//jsonerTemplate - переменная содержит шаблон на основе которого генерируются методы рерализующие интерфейсы json.Marshaler, json.UnMarshaler
+//JsonerTemplate - переменная содержит шаблон на основе которого генерируются методы рерализующие интерфейсы json.Marshaler, json.UnMarshaler
 //  Параметры шаблона:
 //   -.TypeName — название типа данных для которого генерируются методы,
 var JsonerTmpl = template.Must(template.New("").Parse(`

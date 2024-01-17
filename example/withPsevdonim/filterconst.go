@@ -1,7 +1,7 @@
 package withpsevdonim
 
 //go:generate stringer -type=FilterConst
-//go:generate enummethods -type=Status
+//go:generate enummethods -type=FilterConst
 type FilterConst int
 
 const (

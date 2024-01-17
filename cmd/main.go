@@ -115,9 +115,10 @@ func main() {
 			WithArray:  info.withArray,
 		}
 		methods.PkgTmpl.Execute(&buf, params)
-		methods.JsonerTmpl.Execute(&buf, params)
 		methods.ValidatorTmpl.Execute(&buf, params)
-
+		methods.JsonerTmpl.Execute(&buf, params)
+		methods.YamlerTmpl.Execute(&buf,params)
+		
 		if info.withArray {
 			methods.StringerWithArrayTmpl.Execute(&buf, params)
 			methods.UnstringerWithArrayTmpl.Execute(&buf, params)

@@ -22,7 +22,7 @@ type Generator struct {
 	logf func(format string, args ...interface{}) // test logging hook; nil when not testing
 }
 
-// parsePackage анализирует пакет.
+// parsePackage анализирует пакет.f
 // parsePackage exits if there is an error.
 func (g *Generator) parsePackage(patterns []string, tags []string) {
 	cfg := &packages.Config{
