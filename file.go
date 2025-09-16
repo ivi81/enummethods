@@ -1,4 +1,4 @@
-//file.go - содержит тип данных
+// file.go - содержит тип данных
 package main
 
 import (
@@ -9,12 +9,13 @@ import (
 	"strings"
 )
 
-//File - тип данных описывающий данные извлеченные из обработанного файла с кодом.
+// File - тип данных описывающий данные извлеченные из обработанного файла с кодом.
 // Поля структуры:
-//   pkg       - содержит пакет которому принадлежит файл
-//   file      - содержит синтаксическое дерево кода обработанного файла
-//   typeNames - список имен обрабатываемых типов данных
-//   values    - аккамулирует информацию необходимую для генерации
+//
+//	pkg       - содержит пакет которому принадлежит файл
+//	file      - содержит синтаксическое дерево кода обработанного файла
+//	typeNames - список имен обрабатываемых типов данных
+//	values    - аккамулирует информацию необходимую для генерации
 type File struct {
 	pkg  *Package
 	file *ast.File
@@ -48,7 +49,7 @@ func (f *File) genDecl(node ast.Node) bool {
 	return false
 }
 
-//isValidTypeNames - проверка названия обрабатываемого типа
+// isValidTypeNames - проверка названия обрабатываемого типа
 func (f *File) isValidTypeNames(name string) bool {
 	for _, typeName := range f.typeNames {
 		if name == typeName {
@@ -58,7 +59,7 @@ func (f *File) isValidTypeNames(name string) bool {
 	return false
 }
 
-//isSimilarToTypeName - проверка условия того что название константного типа и имя переменной похожи
+// isSimilarToTypeName - проверка условия того что название константного типа и имя переменной похожи
 func (f *File) isSimilarToTypeName(name string) (string, bool) {
 	for _, typeName := range f.typeNames {
 		if name == convertLowerLetter(typeName) {
@@ -68,7 +69,7 @@ func (f *File) isSimilarToTypeName(name string) (string, bool) {
 	return "", false
 }
 
-//getConst - получаем список констант
+// getConst - получаем список констант
 func (f *File) getConsts(specs []ast.Spec) {
 	typeName := ""
 	for _, spec := range specs {
@@ -83,7 +84,7 @@ func (f *File) getConsts(specs []ast.Spec) {
 	}
 }
 
-//isValidConst - устанваливает валидность типа данных для констант
+// isValidConst - устанваливает валидность типа данных для констант
 func (f *File) isValidConst(vspec *ast.ValueSpec) (string, bool) {
 	//проверяем случай когда при названии константы не указан тип
 	if vspec.Type == nil && len(vspec.Values) > 0 {
@@ -106,7 +107,7 @@ func (f *File) isValidConst(vspec *ast.ValueSpec) (string, bool) {
 	return "", false
 }
 
-//getConstName - извлечние имени константы из синтаксического обекта
+// getConstName - извлечние имени константы из синтаксического обекта
 func (f *File) getConstName(vspec *ast.ValueSpec, typeName string) {
 
 	//извлекаем имена констант
@@ -129,7 +130,7 @@ func (f *File) getConstName(vspec *ast.ValueSpec, typeName string) {
 	f.typeInfos[typeName] = typeInfo
 }
 
-//checkForArray - получаем название переменной массива строк
+// checkForArray - получаем название переменной массива строк
 func (f *File) checkForArray(specs []ast.Spec) {
 	for _, spec := range specs {
 		vspec := spec.(*ast.ValueSpec)
@@ -150,8 +151,8 @@ func (f *File) checkForArray(specs []ast.Spec) {
 	}
 }
 
-//convertLowerLetter - конвертировать первую букву слова
-//из заглавной в строчную
+// convertLowerLetter - конвертировать первую букву слова
+// из заглавной в строчную
 func convertLowerLetter(word string) string {
 	lower := strings.ToLower(word[0:1])
 	return (lower + word[1:])

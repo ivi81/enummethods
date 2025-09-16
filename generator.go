@@ -10,9 +10,10 @@ import (
 )
 
 // Generator содержит состояние анализа кода.
-//В основном используется для буферизации выходных данных для format.Source.
-//  Поля:
-//   pkg - сканируемый пакет
+// В основном используется для буферизации выходных данных для format.Source.
+//
+//	Поля:
+//	 pkg - сканируемый пакет
 type Generator struct {
 	pkg *Package
 
@@ -80,7 +81,7 @@ func (g *Generator) generate(typeNames []string) map[string]TypeInfo {
 				}
 
 				info.withArray = v.withArray
-				info.pkgName=g.pkg.name
+				info.pkgName = g.pkg.name
 				typeInfos[k] = info
 			}
 		}

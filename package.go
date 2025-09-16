@@ -5,7 +5,7 @@ import (
 	"go/types"
 )
 
-//Package
+// Package
 type Package struct {
 	name  string
 	defs  map[*ast.Ident]types.Object
