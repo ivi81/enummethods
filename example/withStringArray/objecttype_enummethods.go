@@ -45,13 +45,13 @@ func (m *ObjectType) UnmarshalJSON(data []byte) error {
 
 
 //MarshalYAML - реализует метод интерфейса yaml.Marshaler
-func (m ObjectType) MarshalYAML() ([]byte, error) {
+func (m ObjectType) MarshalYAML() (interface{}, error) {
 	return enumerator.MarshalYAML(m)
 }
 
-//UnmarshalYAML - реализует метод интерфейса json.UnMarshaler
-func (m *ObjectType) UnmarshalYAML(data []byte) error {
-	return enumerator.UnmarshalYAML(m, data)
+//UnmarshalYAML - реализует метод интерфейса yaml.UnMarshaler
+func (m *ObjectType) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	return enumerator.UnmarshalYAML(m, unmarshal)
 }
 
 
