@@ -5,6 +5,7 @@ package main
 // строковых значений. Должен
 import (
 	"bytes"
+
 	"path"
 
 	"flag"
@@ -15,11 +16,13 @@ import (
 	"strings"
 
 	"github.com/ivi81/enummethods/tmpl/methods"
+	"github.com/ivi81/enummethods/version"
 )
 
 var (
-	typeNames = flag.String("type", "", "comma-separated list of type names; must be set")
-	output    = flag.String("output", "", "output file name; default same file as srcdir/srcFileName.go")
+	typeNames   = flag.String("type", "", "comma-separated list of type names; must be set")
+	output      = flag.String("output", "", "output file name; default same file as srcdir/srcFileName.go")
+	showVersion = flag.Bool("version", false, "show version information")
 	//arrayName = flag.String("array", "", "string array name; default same as base type name start with lower letter")
 	//trimprefix  = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
 	linecomment = flag.Bool("linecomment", false, "use line comment text as printed text when present")
@@ -49,6 +52,12 @@ func main() {
 	log.SetPrefix("enummethods: ")
 	flag.Usage = Usage
 	flag.Parse()
+
+	if *showVersion {
+		info := version.Get()
+		fmt.Println(info)
+		return
+	}
 
 	if len(*typeNames) == 0 {
 		flag.Usage()
